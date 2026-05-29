@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+
+:root {
+  --color-brand-blue: #1B5EC2;
+  --color-brand-blue-light: #2C6BAC;
+  --color-brand-blue-pale: #EBF2FB;
+  --color-brand-orange: #E85D1A;
+  --color-brand-orange-light: #FDF0EA;
+  --color-brand-dark: #1E2D40;
+  --color-brand-dark-mid: #2D3F55;
+  --color-whatsapp: #25D366;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; }
+h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
+
+@layer utilities {
+  .font-head { font-family: 'Syne', sans-serif; }
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
