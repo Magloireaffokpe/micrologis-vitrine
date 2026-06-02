@@ -92,6 +92,14 @@ export default function Header({ config, categories, products, onMenuOpen }: Hea
               {cat.subcategories.length > 0 && <MegaMenu category={cat} />}
             </div>
           ))}
+          <div className="ml-auto">
+            <Link
+              href="/contact"
+              className="flex items-center gap-1.5 px-4 py-3 text-[13px] font-medium text-white/70 hover:text-white hover:bg-brand-orange transition-all whitespace-nowrap"
+            >
+              Contact &amp; Localisation
+            </Link>
+          </div>
         </div>
       </nav>
     </header>

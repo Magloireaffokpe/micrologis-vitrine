@@ -15,7 +15,14 @@ export default function TopBar({ config }: TopBarProps) {
         </span>
         <span className="flex items-center gap-1.5 opacity-80">
           <Clock size={12} className="text-brand-orange shrink-0" />
-          Lun–Ven <strong className="opacity-100 ml-1">08h–19h</strong> &nbsp;|&nbsp; Sam <strong className="opacity-100">08h–18h</strong>
+          {Object.entries(config.hours)
+            .filter(([_, time]) => time !== "Fermé")
+            .map(([day, time], index) => (
+              <span key={day} className="flex items-center">
+                {index > 0 && <span className="mx-2 opacity-50">|</span>}
+                {day.replace("Lundi", "Lun").replace("Samedi", "Sam")} <strong className="opacity-100 ml-1">{time}</strong>
+              </span>
+            ))}
         </span>
         <span className="flex items-center gap-1.5 opacity-80">
           <Phone size={12} className="text-brand-orange shrink-0" />

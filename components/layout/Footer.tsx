@@ -78,6 +78,11 @@ export default function Footer({ config, categories }: FooterProps) {
                   WhatsApp
                 </a>
               </li>
+              <li className="pt-2">
+                <Link href="/contact" className="inline-block text-[12px] font-bold text-brand-dark bg-brand-orange px-3 py-1.5 rounded-sm hover:opacity-90 transition-opacity">
+                  Ouvrir la page Contact
+                </Link>
+              </li>
             </ul>
           </div>
 

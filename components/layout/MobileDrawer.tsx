@@ -74,6 +74,17 @@ export default function MobileDrawer({ isOpen, onClose, config, categories }: Mo
                 {cat.name}
               </Link>
             ))}
+            <div className="my-2 border-t border-gray-100 mx-4" />
+            <Link
+              href="/contact"
+              onClick={onClose}
+              className="flex items-center gap-3 px-4 py-3 text-sm font-bold text-brand-dark hover:bg-[#FFF4ED] hover:text-brand-orange transition-colors"
+            >
+              <span className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#FFF4ED] text-brand-orange">
+                <MapPin size={16} />
+              </span>
+              Contact &amp; Localisation
+            </Link>
           </div>
         </div>
 
