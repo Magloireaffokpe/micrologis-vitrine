@@ -7,6 +7,7 @@ export interface StoreConfig {
   email: string;
   address: string;
   city: string;
+  maps_link: string;
   maps_embed_url: string;
   currency: string;
   currency_symbol: string;

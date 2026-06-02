@@ -139,7 +139,7 @@ export default function ContactPage() {
                 MICROLOGIS — Parakou, BANIKANNI
               </div>
               <a
-                href="https://maps.google.com/?q=Parakou+Benin+BANIKANNI"
+                href={config.maps_link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 text-white/60 text-xs hover:text-white transition-colors"
@@ -148,7 +148,7 @@ export default function ContactPage() {
               </a>
             </div>
             <iframe
-              src="https://maps.google.com/maps?q=Parakou+Benin&output=embed&z=14"
+              src={config.maps_embed_url}
               title="Localisation MICROLOGIS Parakou"
               width="100%"
               height="100%"
