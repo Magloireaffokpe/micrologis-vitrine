@@ -2,19 +2,18 @@
   "config": {
     "store_name": "MICROLOGIS INFORMATIQUE & GSM",
     "tagline": "Votre partenaire high-tech à Parakou",
-    "whatsapp_number": "+22997000000",
+    "whatsapp_number": "+2290197419851",
     "whatsapp_message_generic": "Bonjour MICROLOGIS, je voudrais des renseignements.",
-    "phone": "+22997000000",
+    "phone": "+229 01 97 41 98 51",
     "email": "micrologis.parakou@gmail.com",
     "address": "Parakou, BANIKANNI — le pavé qui quitte le Campus pour Rose Croix, après le pont, 2ème immeuble à droite",
     "city": "Parakou, Bénin",
-    "maps_embed_url": "https://maps.google.com/maps?q=Parakou+Benin&output=embed",
+    "maps_embed_url": "https://maps.app.goo.gl/Xmot8c5FpteY4UNi8",
     "currency": "FCFA",
     "currency_symbol": "F",
     "logo_path": "/images/logo/logo.webp",
     "hours": {
-      "Lundi–Vendredi": "08h00 – 19h00",
-      "Samedi": "08h00 – 18h00",
+      "Lundi–Samedi": "08h00 – 21h00",
       "Dimanche": "Fermé"
     },
     "social": {
@@ -34,7 +33,15 @@
       "bg_color": "#EBF2FB",
       "meta_title": "Ordinateurs Portables & PC Fixes à Parakou | MICROLOGIS",
       "meta_description": "Achetez vos ordinateurs HP, Dell, Lenovo neufs et occasion à Parakou. Meilleurs prix, garantie, réparation.",
-      "subcategories": ["HP", "Dell", "Lenovo", "Asus", "Acer", "Toshiba", "PC Occasion"]
+      "subcategories": [
+        "HP",
+        "Dell",
+        "Lenovo",
+        "Asus",
+        "Acer",
+        "Toshiba",
+        "PC Occasion"
+      ]
     },
     {
       "id": "telephones",
@@ -47,7 +54,15 @@
       "bg_color": "#F5F3FF",
       "meta_title": "Smartphones & Téléphones à Parakou | MICROLOGIS",
       "meta_description": "iPhone, Samsung, Infinix, Tecno — téléphones neufs et occasion à Parakou Bénin.",
-      "subcategories": ["Samsung", "iPhone", "Infinix", "Tecno", "Xiaomi", "Itel", "Occasion"]
+      "subcategories": [
+        "Samsung",
+        "iPhone",
+        "Infinix",
+        "Tecno",
+        "Xiaomi",
+        "Itel",
+        "Occasion"
+      ]
     },
     {
       "id": "tablettes",
@@ -73,7 +88,14 @@
       "bg_color": "#FDF0EA",
       "meta_title": "Accessoires Téléphones à Parakou | MICROLOGIS",
       "meta_description": "Écouteurs, chargeurs rapides, coques, câbles USB-C pour tous smartphones à Parakou.",
-      "subcategories": ["Écouteurs", "Chargeurs", "Coques", "Câbles", "Power Bank", "Montres connectées"]
+      "subcategories": [
+        "Écouteurs",
+        "Chargeurs",
+        "Coques",
+        "Câbles",
+        "Power Bank",
+        "Montres connectées"
+      ]
     },
     {
       "id": "accessoires-informatiques",
@@ -86,20 +108,15 @@
       "bg_color": "#F0FDF4",
       "meta_title": "Accessoires Informatiques à Parakou | MICROLOGIS",
       "meta_description": "Souris, claviers, disques durs, clés USB, webcams et imprimantes à Parakou Bénin.",
-      "subcategories": ["Souris", "Claviers", "Disques Durs", "Clés USB", "Webcams", "Imprimantes", "Écrans"]
-    },
-    {
-      "id": "services",
-      "slug": "services",
-      "name": "Services",
-      "name_short": "Services",
-      "description": "Réparation, installation, formation et conseil informatique",
-      "icon": "Wrench",
-      "color": "#D97706",
-      "bg_color": "#FFFBEB",
-      "meta_title": "Réparation & Services Informatiques à Parakou | MICROLOGIS",
-      "meta_description": "Réparation PC et téléphones, installation Windows, formation informatique à Parakou Bénin.",
-      "subcategories": ["Réparation PC", "Réparation Téléphone", "Installation OS", "Formation", "Livraison", "SAV"]
+      "subcategories": [
+        "Souris",
+        "Claviers",
+        "Disques Durs",
+        "Clés USB",
+        "Webcams",
+        "Imprimantes",
+        "Écrans"
+      ]
     }
   ],
   "products": [
