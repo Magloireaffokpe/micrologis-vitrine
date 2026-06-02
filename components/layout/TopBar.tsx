@@ -16,7 +16,7 @@ export default function TopBar({ config }: TopBarProps) {
         <span className="flex items-center gap-1.5 opacity-80">
           <Clock size={12} className="text-brand-orange shrink-0" />
           {Object.entries(config.hours)
-            .filter(([_, time]) => time !== "Fermé")
+            .filter(([, time]) => time !== "Fermé")
             .map(([day, time], index) => (
               <span key={day} className="flex items-center">
                 {index > 0 && <span className="mx-2 opacity-50">|</span>}
