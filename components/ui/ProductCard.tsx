@@ -41,8 +41,9 @@ export default function ProductCard({ product, config }: ProductCardProps) {
           <Image
             src={product.images[0]}
             alt={product.name}
-            fill
-            className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
+            width={400}
+            height={300}
+            className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
           />
         ) : (
           <div className="flex items-center justify-center w-full h-full">

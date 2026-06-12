@@ -20,8 +20,9 @@ export default function LogoSafe({ logoPath, className = "", textClass = "" }: L
       <Image
         src={logoPath}
         alt="MICROLOGIS Logo"
-        fill
-        className="object-contain"
+        width={200}
+        height={60}
+        className="w-full h-full object-contain"
         onError={() => setImgError(true)}
         priority
       />
