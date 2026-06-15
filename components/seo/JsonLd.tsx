@@ -6,7 +6,6 @@ export default function JsonLd({ data }: { data: Record<string, unknown> | Recor
   return (
     <script
       type="application/ld+json"
-      async
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );

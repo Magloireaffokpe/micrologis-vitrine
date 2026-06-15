@@ -1,7 +1,7 @@
 import { getCategories } from "@/lib/products";
 
-export default function sitemap() {
-  const categories = getCategories();
+export default async function sitemap() {
+  const categories = await getCategories();
   const baseUrl = "https://micrologis.vercel.app";
   const now = new Date().toISOString();
 

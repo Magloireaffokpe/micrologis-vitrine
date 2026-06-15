@@ -13,6 +13,13 @@ out/
 .env.local
 .env.development
 .env.production
+.env.test
+.env*.local
+
+# SSL / private keys
+*.pem
+*.key
+*.cer
 
 # Logs
 npm-debug.log*
@@ -35,3 +42,14 @@ coverage/
 
 # TypeScript incremental build info
 *.tsbuildinfo
+
+# SWC compiler cache (Next.js)
+.swc/
+
+# Cypress test artifacts
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# Sentry build artifacts
+.sentryclirc

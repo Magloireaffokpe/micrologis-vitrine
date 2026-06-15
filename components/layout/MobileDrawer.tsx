@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
-import { X, MapPin, Phone, Laptop, Smartphone, Tablet, Headphones, Mouse, Wrench } from "lucide-react";
+import { X, MapPin, Phone, Newspaper } from "lucide-react";
+import * as Icons from "lucide-react";
+import { usePathname } from "next/navigation";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import { StoreConfig, Category } from "@/types";
 import { buildGenericLink } from "@/lib/whatsapp";
@@ -13,6 +15,7 @@ interface MobileDrawerProps {
 }
 
 export default function MobileDrawer({ isOpen, onClose, config, categories }: MobileDrawerProps) {
+  const pathname = usePathname();
   const waLink = buildGenericLink(config);
 
   return (
@@ -62,23 +65,44 @@ export default function MobileDrawer({ isOpen, onClose, config, categories }: Mo
                 key={cat.id}
                 href={`/${cat.slug}`}
                 onClick={onClose}
-                className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-brand-dark hover:bg-brand-blue-pale hover:text-brand-blue transition-colors"
+                className={`flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors ${
+                  pathname === `/${cat.slug}`
+                    ? 'text-brand-orange bg-[#FFF4ED]'
+                    : 'text-brand-dark hover:bg-brand-blue-pale hover:text-brand-blue'
+                }`}
               >
                 <span className="w-8 h-8 rounded-lg flex items-center justify-center text-base" style={{ background: cat.bg_color, color: cat.color }}>
-                  {cat.icon === "Laptop" ? <Laptop size={16} /> :
-                   cat.icon === "Smartphone" ? <Smartphone size={16} /> :
-                   cat.icon === "Tablet" ? <Tablet size={16} /> :
-                   cat.icon === "Headphones" ? <Headphones size={16} /> :
-                   cat.icon === "Mouse" ? <Mouse size={16} /> : <Wrench size={16} />}
+                  {(() => {
+                    const Icon = Icons[cat.icon as keyof typeof Icons] as React.ComponentType<{ size?: number }> | undefined;
+                    return Icon ? <Icon size={16} /> : <span className="text-sm font-black">{cat.name_short?.[0] ?? '?'}</span>;
+                  })()}
                 </span>
                 {cat.name}
               </Link>
             ))}
             <div className="my-2 border-t border-gray-100 mx-4" />
             <Link
+              href="/blog"
+              onClick={onClose}
+              className={`flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors ${
+                pathname?.startsWith('/blog')
+                  ? 'text-brand-orange bg-[#FFF4ED]'
+                  : 'text-brand-dark hover:bg-brand-blue-pale hover:text-brand-blue'
+              }`}
+            >
+              <span className="w-8 h-8 rounded-lg flex items-center justify-center bg-brand-blue-pale text-brand-blue">
+                <Newspaper size={16} />
+              </span>
+              Actualités
+            </Link>
+            <Link
               href="/contact"
               onClick={onClose}
-              className="flex items-center gap-3 px-4 py-3 text-sm font-bold text-brand-dark hover:bg-[#FFF4ED] hover:text-brand-orange transition-colors"
+              className={`flex items-center gap-3 px-4 py-3 text-sm font-bold transition-colors ${
+                pathname === '/contact'
+                  ? 'text-brand-orange bg-[#FFF4ED]'
+                  : 'text-brand-dark hover:bg-[#FFF4ED] hover:text-brand-orange'
+              }`}
             >
               <span className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#FFF4ED] text-brand-orange">
                 <MapPin size={16} />

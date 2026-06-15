@@ -1,13 +1,15 @@
 "use client";
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { Product } from "@/types";
-import { searchProducts } from "@/lib/search";
+import { createFuse, searchProducts } from "@/lib/search";
 
 export function useSearch(products: Product[]) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Product[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const fuse = useMemo(() => createFuse(products), [products]);
 
   const handleQuery = useCallback(
     (val: string) => {
@@ -19,12 +21,12 @@ export function useSearch(products: Product[]) {
         return;
       }
       debounceRef.current = setTimeout(() => {
-        const hits = searchProducts(products, val, 8);
+        const hits = searchProducts(fuse, val, 8);
         setResults(hits);
         setIsOpen(hits.length > 0);
       }, 150);
     },
-    [products]
+    [fuse]
   );
 
   const close = useCallback(() => {
@@ -38,7 +40,10 @@ export function useSearch(products: Product[]) {
       if (e.key === "Escape") close();
     };
     window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
+    return () => {
+      window.removeEventListener("keydown", handler);
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
   }, [close]);
 
   return { query, results, isOpen, handleQuery, close };

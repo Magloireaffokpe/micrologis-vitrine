@@ -49,6 +49,15 @@ export default function Footer({ config, categories }: FooterProps) {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-[13px] text-white/55 hover:text-brand-orange transition-colors flex items-center gap-2"
+                >
+                  <span className="w-1 h-1 rounded-full bg-brand-orange/60 inline-block shrink-0" />
+                  Actualités
+                </Link>
+              </li>
             </ul>
           </div>
 

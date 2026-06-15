@@ -43,8 +43,7 @@ export default function HeroSection({ config }: HeroSectionProps) {
           </h1>
 
           <p className="text-white/70 text-base sm:text-lg leading-relaxed mb-8 max-w-[460px]">
-            PC portables, smartphones, tablettes et accessoires — neufs &amp; occasion.
-            Prix transparents, garantie, livraison à Parakou.
+            {config.tagline || 'PC portables, smartphones, tablettes et accessoires — neufs & occasion. Prix transparents, garantie, livraison à Parakou.'}
           </p>
 
           {/* CTAs */}

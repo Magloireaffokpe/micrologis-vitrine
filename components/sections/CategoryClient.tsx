@@ -1,13 +1,14 @@
-import { Product, StoreConfig } from "@/types";
+import { Product, StoreConfig, Category } from "@/types";
 import { PackageX } from "lucide-react";
 import ProductCard from "@/components/ui/ProductCard";
 
 interface CategoryClientProps {
   products: Product[];
   config: StoreConfig;
+  category?: Category;
 }
 
-export default function CategoryClient({ products, config }: CategoryClientProps) {
+export default function CategoryClient({ products, config, category }: CategoryClientProps) {
   if (products.length === 0) {
     return (
       <div className="text-center py-20 text-gray-400">
@@ -22,10 +23,20 @@ export default function CategoryClient({ products, config }: CategoryClientProps
 
   return (
     <div className="max-w-[1280px] mx-auto px-4 py-8">
-      {/* Product count */}
-      <p className="text-xs text-gray-400 mb-4 font-medium">
-        {products.length} produit{products.length !== 1 ? "s" : ""} disponible{products.length !== 1 ? "s" : ""}
-      </p>
+      {/* Category header */}
+      {category && (
+        <div className="text-center mb-8">
+          <h1 className="font-head text-2xl md:text-3xl font-black text-brand-dark">
+            {category.name}
+          </h1>
+          {category.description && (
+            <p className="text-sm text-gray-500 mt-2">{category.description}</p>
+          )}
+          <p className="text-xs text-gray-400 mt-2 font-medium">
+            {products.length} produit{products.length !== 1 ? "s" : ""} disponible{products.length !== 1 ? "s" : ""}
+          </p>
+        </div>
+      )}
 
       {/* Dense product grid — pure catalogue, no filters */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">

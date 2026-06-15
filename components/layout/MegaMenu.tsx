@@ -17,7 +17,7 @@ function DynIcon({ name, size = 14 }: { name: string; size?: number }) {
 
 export default function MegaMenu({ category }: MegaMenuProps) {
   return (
-    <div className="absolute top-[calc(100%+2px)] left-0 min-w-[300px] bg-white border border-gray-100 rounded-b-brand rounded-r-brand shadow-[0_12px_40px_rgba(30,45,64,0.15)] z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 translate-y-[-6px] group-hover:translate-y-0">
+    <div className="absolute top-[calc(100%+2px)] left-0 min-w-[300px] max-w-[90vw] bg-white border border-gray-100 rounded-b-brand rounded-r-brand shadow-[0_12px_40px_rgba(30,45,64,0.15)] z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 translate-y-[-6px] group-hover:translate-y-0">
       {/* Header */}
       <div className="bg-brand-blue text-white px-4 py-2.5 rounded-tr-brand">
         <p className="font-head text-xs font-bold uppercase tracking-widest">{category.name}</p>

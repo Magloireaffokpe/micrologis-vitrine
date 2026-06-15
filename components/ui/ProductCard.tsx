@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { Product, StoreConfig } from "@/types";
 import { buildProductLink } from "@/lib/whatsapp";
@@ -32,42 +33,95 @@ interface ProductCardProps {
 export default function ProductCard({ product, config }: ProductCardProps) {
   const waLink = buildProductLink(product, config);
   const hasImage = product.images.length > 0;
+  const categorySlug = product.category?.slug ?? product.category_id;
+  const productLink = product.slug ? `/${categorySlug}/${product.slug}` : null;
+  const displayPrice = product.effective_price ?? product.price;
 
   return (
     <div className="group flex flex-col bg-white border border-[#E5E9EF] rounded-brand overflow-hidden hover:border-brand-blue/40 hover:shadow-brand-hover transition-all duration-200">
       {/* Image area */}
-      <div className="relative bg-surface aspect-[4/3] flex items-center justify-center overflow-hidden border-b border-[#E5E9EF]">
-        {hasImage ? (
-          <Image
-            src={product.images[0]}
-            alt={product.name}
-            width={400}
-            height={300}
-            className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
-          />
-        ) : (
-          <div className="flex items-center justify-center w-full h-full">
-            {categoryIcons[product.category_id] ?? <Package size={40} className="text-gray-200" />}
+      {productLink ? (
+        <Link href={productLink} className="relative block bg-surface aspect-[4/3] overflow-hidden border-b border-[#E5E9EF]">
+          <div className="w-full h-full flex items-center justify-center">
+            {hasImage ? (
+              <Image
+                src={product.images[0]}
+                alt={product.name}
+                width={400}
+                height={300}
+                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
+              />
+            ) : (
+              <div className="flex items-center justify-center w-full h-full">
+                {categoryIcons[product.category_id] ?? <Package size={40} className="text-gray-200" />}
+              </div>
+            )}
           </div>
-        )}
-        {/* Condition badge */}
-        <div className="absolute top-2 left-2 flex flex-col gap-1">
-          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-[3px] ${conditionColors[product.condition]}`}>
-            {conditionLabels[product.condition]}
-          </span>
-          {!product.in_stock && (
-            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-[3px] bg-red-100 text-red-600">
-              Rupture
+          {/* Badges */}
+          <div className="absolute top-2 left-2 flex flex-col gap-1">
+            <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-[3px] ${conditionColors[product.condition]}`}>
+              {conditionLabels[product.condition]}
             </span>
+            {product.is_promo && (
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-[3px] bg-brand-orange text-white">
+                PROMO
+              </span>
+            )}
+            {!product.in_stock && (
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-[3px] bg-red-100 text-red-600">
+                Rupture
+              </span>
+            )}
+          </div>
+        </Link>
+      ) : (
+        <div className="relative bg-surface aspect-[4/3] flex items-center justify-center overflow-hidden border-b border-[#E5E9EF]">
+          {hasImage ? (
+            <Image
+              src={product.images[0]}
+              alt={product.name}
+              width={400}
+              height={300}
+              className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
+            />
+          ) : (
+            <div className="flex items-center justify-center w-full h-full">
+              {categoryIcons[product.category_id] ?? <Package size={40} className="text-gray-200" />}
+            </div>
           )}
+          {/* Badges */}
+          <div className="absolute top-2 left-2 flex flex-col gap-1">
+            <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-[3px] ${conditionColors[product.condition]}`}>
+              {conditionLabels[product.condition]}
+            </span>
+            {product.is_promo && (
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-[3px] bg-brand-orange text-white">
+                PROMO
+              </span>
+            )}
+            {!product.in_stock && (
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-[3px] bg-red-100 text-red-600">
+                Rupture
+              </span>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Body */}
       <div className="flex flex-col flex-1 p-3">
-        <h3 className="text-[13px] font-semibold text-brand-dark leading-snug line-clamp-2 mb-1">
-          {product.name}
-        </h3>
+        {productLink ? (
+          <Link
+            href={productLink}
+            className="text-[13px] font-semibold text-brand-dark leading-snug line-clamp-2 mb-1 hover:text-brand-blue transition-colors"
+          >
+            {product.name}
+          </Link>
+        ) : (
+          <div className="text-[13px] font-semibold text-brand-dark leading-snug line-clamp-2 mb-1">
+            {product.name}
+          </div>
+        )}
         {/* Specs — compact tech display */}
         {product.specs && (
           <p className="text-[11px] text-gray-400 leading-relaxed line-clamp-2 mb-2">
@@ -77,10 +131,16 @@ export default function ProductCard({ product, config }: ProductCardProps) {
 
         <div className="mt-auto pt-2 border-t border-[#F0F2F5] flex items-center justify-between gap-2">
           <div>
-            <span className="text-[15px] font-black text-brand-dark leading-none">
-              {product.price?.toLocaleString("fr-FR")}
-            </span>
-            <span className="text-[11px] text-gray-400 ml-0.5">{config.currency_symbol}</span>
+            {displayPrice != null ? (
+              <>
+                <span className="text-[15px] font-black text-brand-dark leading-none">
+                  {displayPrice.toLocaleString("fr-FR")}
+                </span>
+                <span className="text-[11px] text-gray-400 ml-0.5">{config.currency_symbol}</span>
+              </>
+            ) : (
+              <span className="text-[11px] text-gray-400">Prix sur demande</span>
+            )}
           </div>
           <a
             href={waLink}

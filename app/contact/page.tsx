@@ -5,6 +5,7 @@ import { MapPin, Phone, Mail, Clock, MessageCircle, ExternalLink } from "lucide-
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import FaqSection from "@/components/sections/FaqSection";
 import JsonLd from "@/components/seo/JsonLd";
+import ContactForm from "@/components/ui/ContactForm";
 import { faqs } from "@/lib/faq-data";
 
 const BASE_URL = "https://micrologis.vercel.app";
@@ -15,9 +16,13 @@ export const metadata: Metadata = {
   alternates: { canonical: `${BASE_URL}/contact` },
 };
 
-export default function ContactPage() {
-  const config = getConfig();
+export default async function ContactPage() {
+  const config = await getConfig();
   const waLink = buildGenericLink(config, "Bonjour MICROLOGIS, je voudrais vous contacter.");
+
+  const osmEmbedUrl = config.maps_embed_url
+    ? config.maps_embed_url
+    : `https://www.openstreetmap.org/export/embed.html?bbox=2.6404731%2C9.3271695%2C2.6504731%2C9.3331695&layer=mapnik&marker=9.3301695%2C2.6454731`;
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -138,25 +143,53 @@ export default function ContactPage() {
                 <MapPin size={15} className="text-brand-orange" />
                 MICROLOGIS — Parakou, BANIKANNI
               </div>
-              <a
-                href={config.maps_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 text-white/60 text-xs hover:text-white transition-colors"
-              >
-                Ouvrir <ExternalLink size={12} />
-              </a>
+              {config.maps_link && (
+                <a
+                  href={config.maps_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-white/60 text-xs hover:text-white transition-colors"
+                >
+                  Ouvrir <ExternalLink size={12} />
+                </a>
+              )}
             </div>
-            <iframe
-              src={config.maps_embed_url}
-              title="Localisation MICROLOGIS Parakou"
-              width="100%"
-              height="100%"
-              className="min-h-[380px] border-0 block"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+
+            {osmEmbedUrl ? (
+              <iframe
+                src={osmEmbedUrl}
+                title="Localisation MICROLOGIS Parakou"
+                width="100%"
+                height="100%"
+                className="min-h-[260px] sm:min-h-[380px] border-0 block"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            ) : (
+              <div className="min-h-[380px] flex flex-col items-center justify-center gap-4 bg-surface">
+                <MapPin size={40} className="text-gray-200" />
+                <p className="text-sm text-gray-400 text-center px-6">
+                  Carte non configurée.<br />
+                  Ajoutez une URL d&apos;intégration Google Maps dans les paramètres.
+                </p>
+                {config.maps_link && (
+                  <a
+                    href={config.maps_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-brand-blue text-white text-sm font-bold px-4 py-2 rounded-brand hover:opacity-90 transition-opacity"
+                  >
+                    <ExternalLink size={14} /> Voir sur Google Maps
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="bg-white border border-gray-100 rounded-brand p-6 shadow-brand">
+            <h2 className="font-head text-lg font-bold text-brand-dark mb-4">Envoyer un message</h2>
+            <ContactForm />
           </div>
         </div>
       </div>

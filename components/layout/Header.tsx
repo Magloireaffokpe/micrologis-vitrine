@@ -12,9 +12,10 @@ interface HeaderProps {
   categories: Category[];
   products: Product[];
   onMenuOpen?: () => void;
+  currentPath?: string;
 }
 
-export default function Header({ config, categories, products, onMenuOpen }: HeaderProps) {
+export default function Header({ config, categories, products, onMenuOpen, currentPath }: HeaderProps) {
   const waLink = buildGenericLink(config);
 
   return (
@@ -75,23 +76,35 @@ export default function Header({ config, categories, products, onMenuOpen }: Hea
       </div>
 
       {/* Category nav bar */}
-      <nav className="bg-[#161B22] border-b border-white/[0.06] hidden md:block">
-        <div className="max-w-[1280px] mx-auto px-4 flex items-center">
-          {categories.map((cat) => (
-            <div key={cat.id} className="relative group">
-              <Link
-                href={`/${cat.slug}`}
-                className="flex items-center gap-1.5 px-4 py-3 text-[13px] font-medium text-white/70
-                           hover:text-white hover:bg-white/5 transition-all whitespace-nowrap"
-              >
-                {cat.name}
-                {cat.subcategories.length > 0 && (
-                  <ChevronDown size={13} className="opacity-40 group-hover:rotate-180 group-hover:opacity-80 transition-transform duration-200" />
-                )}
-              </Link>
-              {cat.subcategories.length > 0 && <MegaMenu category={cat} />}
-            </div>
-          ))}
+      <nav className="bg-[#161B22] border-b border-white/[0.06] hidden md:block overflow-x-auto">
+        <div className="max-w-[1280px] mx-auto px-4 flex items-center min-w-max">
+          {categories.map((cat) => {
+            const isActive = currentPath === `/${cat.slug}`;
+            return (
+              <div key={cat.id} className="relative group">
+                <Link
+                  href={`/${cat.slug}`}
+                  className={`flex items-center gap-1.5 px-4 py-3 text-[13px] font-medium transition-all whitespace-nowrap ${isActive ? 'text-white bg-brand-orange' : 'text-white/70 hover:text-white hover:bg-brand-orange'}`}
+                >
+                  {cat.name}
+                  {cat.subcategories.length > 0 && (
+                    <ChevronDown size={13} className="opacity-40 group-hover:rotate-180 group-hover:opacity-80 transition-transform duration-200" />
+                  )}
+                </Link>
+                {cat.subcategories.length > 0 && <MegaMenu category={cat} />}
+              </div>
+            );
+          })}
+          <Link
+            href="/blog"
+            className={`flex items-center h-full px-4 text-[13px] font-medium transition-colors border-r border-white/[0.06] ${
+              currentPath?.startsWith('/blog')
+                ? 'text-white bg-brand-orange'
+                : 'text-white/70 hover:text-white hover:bg-brand-orange'
+            }`}
+          >
+            Actualités
+          </Link>
           <div className="ml-auto">
             <Link
               href="/contact"
