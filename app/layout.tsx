@@ -64,6 +64,7 @@ export default async function RootLayout({
             url: "https://micrologis.vercel.app",
           }}
         />
+        <meta name="google-site-verification" content="TEiEOsvtanhPrwgaqh_fA2I5sPQwzfoZGPPuBjnNpK4" />
       </head>
       <body>
         <RootLayoutClient
