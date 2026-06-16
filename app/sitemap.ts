@@ -28,12 +28,15 @@ export default async function sitemap() {
     },
   ];
 
-  const categoryPages = categories.map((cat) => ({
-    url: `${baseUrl}/${cat.slug}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.9,
-  }));
+  const excludedSlugs = ["tablettes", "accessoires-informatiques", "gaming"];
+  const categoryPages = categories
+    .filter((cat) => !excludedSlugs.includes(cat.slug))
+    .map((cat) => ({
+      url: `${baseUrl}/${cat.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    }));
 
   const { data: blogPosts } = await supabase
     .from("blog_posts")
