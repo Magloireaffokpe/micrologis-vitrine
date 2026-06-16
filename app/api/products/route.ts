@@ -1,4 +1,5 @@
 // app/api/products/route.ts — Lecture publique des produits (GET)
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 import { getEffectivePrice } from '@/lib/utils';

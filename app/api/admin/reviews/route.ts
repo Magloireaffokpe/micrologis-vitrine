@@ -1,4 +1,5 @@
 // app/api/admin/reviews/route.ts
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@/lib/auth';
 import { createAdminSupabaseClient } from '@/lib/supabase/server';
