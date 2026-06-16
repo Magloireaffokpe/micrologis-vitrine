@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
   const { error } = await requireAuth();
   if (error) return error;
 
-  const { searchParams } = new URL(request.url);
+  const searchParams = request.nextUrl.searchParams;
   const page = Math.max(1, parseInt(searchParams.get('page') ?? '1'));
   const pageSize = parseInt(searchParams.get('pageSize') ?? '20');
   const status = searchParams.get('status');

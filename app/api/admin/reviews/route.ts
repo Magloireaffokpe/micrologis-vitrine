@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
   const { error } = await requireAuth();
   if (error) return error;
 
-  const { searchParams } = new URL(request.url);
+  const searchParams = request.nextUrl.searchParams;
   const approved = searchParams.get('approved');
   const supabase = createAdminSupabaseClient();
 
