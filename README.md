@@ -107,3 +107,19 @@ Pour que le site reste ultra-rapide à charger sur mobile, respectez ces règles
 2. **Dimensions recommandées** : 
    * **800 × 600 px** (Format paysage horizontal) ou **800 × 800 px** (Format carré).
 3. **Poids des fichiers** : Essayez de garder chaque image en dessous de **100 Ko** en ajustant la qualité lors de l'exportation.
+
+<!-- nouveau-pc:debut -->
+## Installer sur un nouveau PC
+
+**Prérequis :** Git et Node.js 20 ou plus.
+
+```bash
+git clone git@github.com:Magloireaffokpe/micrologis-vitrine.git
+cd micrologis-vitrine
+npm install
+# Créer .env (voir ci-dessous)
+npm run dev                  # http://localhost:3000
+```
+
+**À recopier à la main (hors Git) :** `.env`, avec `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` et `SUPABASE_SERVICE_ROLE_KEY`.
+<!-- nouveau-pc:fin -->
